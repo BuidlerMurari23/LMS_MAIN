@@ -7,6 +7,11 @@ import morgan from "morgan";
 // importing all the routes
 import userRouters from "./routes/userRoutes.js";
 import courseRoutes from "./routes/courseRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
+import miscellaneousRoutes from "./routes/miscellaneousRoutes.js";
+
+
+import errorMiddleware from "./middlewares/errorMiddleware.js";
 
 
 config();
@@ -30,11 +35,15 @@ app.use('/ping', (req,res) => {
 });
 
 app.use("/api/v1/user", userRouters);
-app.use("api/v1/course", courseRoutes)
+app.use("api/v1/courses", courseRoutes);
+app.use("api/v1/payments", paymentRoutes);
+app.use("api/v1", miscellaneousRoutes);
 
 app.use('*', (req,res) => {
     res.status(400).send("OPPS! Page not found..")
-})
+});
+
+app.use(errorMiddleware);
 
 
 export default app;
