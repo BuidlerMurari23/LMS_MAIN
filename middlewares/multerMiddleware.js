@@ -1,6 +1,6 @@
 import path from "path";
 import multer from "multer";
-import AppError from "../utils/AppError";
+import AppError from "../utils/AppError.js";
 
 
 const upload = multer({

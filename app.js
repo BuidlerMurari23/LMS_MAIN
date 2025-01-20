@@ -6,6 +6,7 @@ import morgan from "morgan";
 
 // importing all the routes
 import userRouters from "./routes/userRoutes.js";
+import courseRoutes from "./routes/courseRoutes.js";
 
 
 config();
@@ -29,6 +30,7 @@ app.use('/ping', (req,res) => {
 });
 
 app.use("/api/v1/user", userRouters);
+app.use("api/v1/course", courseRoutes)
 
 app.use('*', (req,res) => {
     res.status(400).send("OPPS! Page not found..")
